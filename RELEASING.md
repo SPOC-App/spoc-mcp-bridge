@@ -2,7 +2,7 @@
 
 ## Prerequisites (one-time)
 
-1. **npm org for `@spoc`.** Create at [npmjs.com/org/create](https://www.npmjs.com/org/create) if it doesn't exist yet, and add the release account as a member with publish rights.
+1. **npm org `spocapp`** — already created ([`@spocapp` on npm](https://www.npmjs.com/settings/spocapp/packages)). The `@spoc` scope was taken. To publish, be logged in as a member with publish rights on `spocapp`.
 2. **`mcp-publisher` CLI.** On macOS:
    ```bash
    brew install mcp-publisher
@@ -30,7 +30,7 @@
    npm login    # interactive, one-time per machine
    npm publish --access public
    ```
-6. Verify the package is live: `https://www.npmjs.com/package/@spoc/mcp-bridge`.
+6. Verify the package is live: `https://www.npmjs.com/package/@spocapp/mcp-bridge`.
 7. Publish to the MCP Registry:
    ```bash
    mcp-publisher login github    # opens a device-code page in your browser
