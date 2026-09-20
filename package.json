@@ -1,0 +1,49 @@
+{
+  "name": "@spoc/mcp-bridge",
+  "version": "0.1.0",
+  "description": "stdio ↔ HTTP+SSE bridge for the SPOC MCP server. Lets Claude Desktop, Cursor, Zed and other stdio-only MCP clients talk to https://spoc.com/mcp/rpc.",
+  "type": "module",
+  "bin": {
+    "spoc-mcp-bridge": "./dist/cli.js"
+  },
+  "main": "./dist/bridge.js",
+  "types": "./dist/bridge.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc && chmod +x dist/cli.js",
+    "dev": "tsx src/cli.ts",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "spoc",
+    "bridge",
+    "stdio",
+    "sse"
+  ],
+  "author": "SPOC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spoc/mcp-bridge.git"
+  },
+  "homepage": "https://spoc.com",
+  "dependencies": {
+    "undici": "^6.19.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
+  }
+}
