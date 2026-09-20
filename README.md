@@ -112,6 +112,24 @@ The bearer token is missing, wrong, or lacks scope. Verify at [`https://spoc.com
 **SSE won't connect.**
 Notifications are optional. Set `SPOC_DISABLE_SSE=1` and everything except server-initiated notifications will still work. If you want to debug, set `SPOC_DEBUG=1` and watch stderr.
 
+## Testing
+
+```bash
+npm run build
+npm test        # unit + client-integration suites (offline, no network)
+```
+
+The **client-integration** suite spawns `spoc-mcp-bridge` as a real subprocess and drives it through the same stdio protocol that Claude Desktop, Cursor, Zed, and Windsurf use — `initialize`, `notifications/initialized`, `tools/list`, `tools/call`, concurrent in-flight calls, mixed-type ids, SSE notifications, upstream errors, and timeouts. If it passes, MCP clients that speak stdio will work.
+
+To also exercise the real production endpoint:
+
+```bash
+SPOC_LIVE_TEST=1 npm test                              # anonymous only
+SPOC_LIVE_TEST=1 SPOC_BEARER=spk_live_... npm test     # + tools/call
+```
+
+CI runs the offline suite on Node 18 / 20 / 22 for every push and PR; the live suite runs on `main` only.
+
 ## Writing your own client
 
 If you're implementing SPOC's report-event HMAC signing directly (rather than going through this bridge), one thing to watch out for: SPOC's canonical form matches JavaScript `JSON.stringify` behaviour, which leaves non-ASCII characters as themselves rather than escaping them to `\uXXXX`. Python's default `json.dumps(...)` escapes non-ASCII — you'll get a `bad_signature` 401 the first time you include an em-dash, curly quote, or accented character. Pass `ensure_ascii=False`.

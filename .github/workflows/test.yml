@@ -1,0 +1,45 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  offline:
+    name: offline suite (unit + client integration)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+
+  live:
+    name: live spoc.com smoke (main only)
+    runs-on: ubuntu-latest
+    # Only run against real spoc.com on pushes to main, not on every PR.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: offline
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - env:
+          SPOC_LIVE_TEST: "1"
+          # SPOC_BEARER is optional. When present in repo secrets, the
+          # authenticated tools/call test also runs.
+          SPOC_BEARER: ${{ secrets.SPOC_BEARER }}
+        run: npm test -- test/live-spoc.test.ts
