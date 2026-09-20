@@ -1,11 +1,11 @@
 {
   "name": "@spocapp/mcp-bridge",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "mcpName": "io.github.spoc-app/mcp-bridge",
   "description": "stdio \u2194 HTTP+SSE bridge for the SPOC MCP server. Lets Claude Desktop, Cursor, Zed and other stdio-only MCP clients talk to https://spoc.com/mcp/rpc.",
   "type": "module",
   "bin": {
-    "spoc-mcp-bridge": "./dist/cli.js"
+    "spoc-mcp-bridge": "dist/cli.js"
   },
   "main": "./dist/bridge.js",
   "types": "./dist/bridge.d.ts",
@@ -35,7 +35,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SPOC-App/spoc-mcp-bridge.git"
+    "url": "git+https://github.com/SPOC-App/spoc-mcp-bridge.git"
   },
   "homepage": "https://spoc.com",
   "dependencies": {
