@@ -1,6 +1,7 @@
 {
   "name": "@spoc/mcp-bridge",
   "version": "0.1.1",
+  "mcpName": "io.github.spoc-app/mcp-bridge",
   "description": "stdio \u2194 HTTP+SSE bridge for the SPOC MCP server. Lets Claude Desktop, Cursor, Zed and other stdio-only MCP clients talk to https://spoc.com/mcp/rpc.",
   "type": "module",
   "bin": {

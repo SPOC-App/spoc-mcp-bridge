@@ -1,0 +1,61 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "io.github.spoc-app/mcp-bridge",
+  "description": "MCP bridge that connects Claude Desktop, Cursor, Zed and other stdio MCP clients to the SPOC caret-handle identity, communications, and witnessed-action platform at spoc.com.",
+  "title": "SPOC",
+  "websiteUrl": "https://spoc.com",
+  "repository": {
+    "url": "https://github.com/SPOC-App/spoc-mcp-bridge",
+    "source": "github"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@spoc/mcp-bridge",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "SPOC_BEARER",
+          "description": "Bearer token from https://spoc.com/settings/api-keys. Omit for anonymous access; required for tools that need a principal (e.g. spoc.harness.issue).",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "SPOC_ENDPOINT",
+          "description": "HTTP JSON-RPC endpoint. Defaults to https://spoc.com/mcp/rpc.",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "SPOC_EVENTS_ENDPOINT",
+          "description": "SSE endpoint for server-initiated notifications. Defaults to https://spoc.com/mcp/events.",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "SPOC_TIMEOUT_MS",
+          "description": "HTTP request timeout in milliseconds. Defaults to 30000.",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "SPOC_DISABLE_SSE",
+          "description": "Set to 1 to skip the SSE event stream (notifications become unavailable).",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "SPOC_DEBUG",
+          "description": "Set to 1 to log debug output to stderr.",
+          "isRequired": false,
+          "isSecret": false
+        }
+      ]
+    }
+  ]
+}
