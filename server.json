@@ -13,7 +13,7 @@
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
-      "identifier": "@spoc/mcp-bridge",
+      "identifier": "@spocapp/mcp-bridge",
       "version": "0.1.1",
       "transport": {
         "type": "stdio"

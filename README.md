@@ -1,4 +1,4 @@
-# @spoc/mcp-bridge
+# @spocapp/mcp-bridge
 
 A ~200-line stdio ↔ HTTP+SSE bridge for the SPOC MCP server.
 
@@ -19,7 +19,7 @@ npm link
 Once released:
 
 ```bash
-npm install -g @spoc/mcp-bridge
+npm install -g @spocapp/mcp-bridge
 ```
 
 ## Configure your MCP client
